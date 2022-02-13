@@ -59,6 +59,8 @@ void insertion_sort_list(listint_t **list)
 
 	if (!list || !*list)
 		return;
+	if (tmp1->next == NULL)
+		return;
 	while (tmp1->next != NULL)
 	{
 		if (tmp1->n > tmp1->next->n)
