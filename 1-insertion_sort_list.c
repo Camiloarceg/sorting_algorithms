@@ -57,8 +57,8 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *tmp1 = (*list), *tmp2 = (*list);
 
-	if ((*list)->next == NULL || !(*list))
-		return;
+	/*if ((*list)->next == NULL || !(*list))
+		return;*/
 	while (tmp1->next != NULL)
 	{
 		if (tmp1->n > tmp1->next->n)
