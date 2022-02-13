@@ -14,6 +14,7 @@ void swap(int *xp, int *yp)
 	*yp = temp;
 }
 
+
 /**
  * print_array - Prints an array of integers
  *
