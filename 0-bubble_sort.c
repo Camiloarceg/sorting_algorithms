@@ -24,13 +24,13 @@ void swap(int *xp, int *yp)
 void bubble_sort(int *array, size_t size)
 {
 	unsigned int i, j;
-	int swaped = 2;
+	int swaped = 0;
 
 	if (size < 2)
 		return;
 	for (i = 0; i < size; i++)
 	{
-		swaped = 2;
+		swaped = 0;
 		for (j = 0; j < size - i - 1; j++)
 		{
 
@@ -41,7 +41,7 @@ void bubble_sort(int *array, size_t size)
 				swaped =1;
 			}
 		}
-		if (swaped = 2)
+		if (!swaped)
 			break;
 	}
 }
