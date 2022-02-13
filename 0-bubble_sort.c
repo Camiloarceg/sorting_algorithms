@@ -1,6 +1,20 @@
 #include "sort.h"
 
 /**
+ * swap - swaps positions
+ *
+ * @xp: left
+ * @yp: right
+ *
+ */
+void swap(int *xp, int *yp)
+{
+	int temp = *xp;
+	*xp = *yp;
+	*yp = temp;
+}
+
+/**
  * bubble_sort - Sorts an array of integers with bubble sort algorithm
  * @array: Array of numbers that's going to be sorted
  * @size: Size of array
