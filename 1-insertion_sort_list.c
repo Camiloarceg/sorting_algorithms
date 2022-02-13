@@ -11,6 +11,8 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *tmp1 = (*list), *tmp2 = (*list);
 
+	if (size < 2)
+		return;
 	while (tmp1->next != NULL)
 	{
 		if (tmp1->n > tmp1->next->n)
