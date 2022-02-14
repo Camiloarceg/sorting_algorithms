@@ -1,7 +1,7 @@
 #include "sort.h"
 
 /**
- * swap - swap 2 positions on array
+ * swap2 - swap 2 positions on array
  *
  * @x: first
  * @y: second
@@ -9,9 +9,9 @@
  */
 void swap2(int *x, int *y)
 {
-  int temp = *x;
-  *x = *y;
-  *y = temp;
+	int temp = *x;
+	*x = *y;
+	*y = temp;
 }
 
 /**
