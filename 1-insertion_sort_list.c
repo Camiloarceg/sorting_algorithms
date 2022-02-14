@@ -59,12 +59,10 @@ void insertion_sort_list(listint_t **list)
 
 	if (!list || !*list)
 	{
-		printf("entro en el 1");
 		return;
 	}
 	if (tmp1->next == NULL || list == NULL)
 	{
-		printf("entro en al 2");
 		return;
 	}
 	tmp1 = (*list), tmp2 = (*list);
