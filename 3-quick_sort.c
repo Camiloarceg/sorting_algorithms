@@ -37,7 +37,6 @@ int partition(int *array, int low, int high, size_t size)
 			if (array[j] != array[i])
 				print_array(array, size);
 			i++;
-			
 		}
 	}
 	swap2(&array[i], &array[high]);
@@ -60,6 +59,7 @@ void qs(int *array, int low, int high, size_t size)
 	if (low < high)
 	{
 		int pivot_index = partition(array, low, high, size);
+
 		qs(array, low, pivot_index - 1, size);
 		qs(array, pivot_index + 1, high, size);
 	}
