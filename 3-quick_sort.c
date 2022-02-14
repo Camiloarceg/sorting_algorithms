@@ -1,78 +1,94 @@
 #include "sort.h"
 
 /**
- * swap2 - swap 2 positions on array
+ * quick_sort - Sorts an array of integers in ascending
+ *              order using the Quick sort algorithm.
  *
- * @x: first
- * @y: second
- *
- */
-void swap2(int *x, int *y)
-{
-	int temp = *x;
-	*x = *y;
-	*y = temp;
-}
-
-/**
- * partition - make the partition in base of the pivot.
- *
- * @array: the array
- * @low: low limit
- * @high: high limit
- * @size: size of array
- *
- * Return: int
- */
-int partition(int *array, int low, int high, size_t size)
-{
-	int pivot_value = array[high];
-	int i = low, j = low;
-
-	for (; j < high; j++)
-	{
-		if (array[j] <= pivot_value)
-		{
-			swap2(&array[i], &array[j]);
-			i++;
-		}
-	}
-	swap2(&array[i], &array[high]);
-	print_array(array, size);
-	return (i);
-}
-
-/**
- * qs - recursive function
- *
- * @array: the array
- * @low: low limit
- * @high: high limit
- * @size: size of array
+ * @array: The array.
+ * @size: Array size.
  *
  */
-void qs(int *array, int low, int high, size_t size)
-{
 
-	if (low < high)
-	{
-
-		int pivot_index = partition(array, low, high, size);
-
-		qs(array, low, pivot_index - 1, size);
-
-		qs(array, pivot_index + 1, high, size);
-	}
-}
-
-/**
- * quick_sort - quicksort function
- *
- * @array: the array
- * @size: the size of array
- *
- */
 void quick_sort(int *array, size_t size)
 {
-	qs(array, 0, size - 1, size);
+	execution(array, 0, (int)(size - 1), size);
+}
+
+/**
+ * execution - Sorts an array of integers in ascending
+ *             order using the Quick sort algorithm.
+ *
+ * @array: The array.
+ * @initial: Initial index.
+ * @final: Final index.
+ * @size: Array size.
+ *
+ */
+
+void execution(int *array, int initial, int final, size_t size)
+{
+	if (initial < final)
+	{
+		int pi = lomuto_partition(array, initial, final, size);
+
+		execution(array, initial, pi - 1, size);
+		execution(array, pi + 1, final, size);
+	}
+}
+
+/**
+ * lomuto_partition - Iterates over the input array, swapping elements
+ *                    that are strictly less than a preselected pivot element.
+ *
+ * @array: The array.
+ * @initial: Initial index.
+ * @final: Final index.
+ * @size: Array size.
+ *
+ * Return: Next index.
+ */
+
+int lomuto_partition(int *array, int initial, int final, size_t size)
+{
+	int i, j, pivot;
+
+	pivot = array[final];
+	i = (initial - 1);
+
+	for (j = initial; j <= (final - 1); j++)
+	{
+		if (array[j] <= pivot)
+		{
+			i++;
+			swap(array, i, j);
+
+			if (i != j)
+				print_array(array, size);
+		}
+	}
+
+	swap(array, (i + 1), final);
+
+	if ((i + 1) < j)
+		print_array(array, size);
+
+	return (i + 1);
+}
+
+/**
+ * swap - Swap two values in an array.
+ *
+ * @array: The array.
+ * @i: First index.
+ * @j: Second index.
+ *
+ */
+
+void swap(int *array, int i, int j)
+{
+	int x = 0;
+
+	x = array[i];
+	array[i] = array[j];
+	array[j] = x;
 }
