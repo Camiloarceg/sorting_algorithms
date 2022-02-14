@@ -61,11 +61,12 @@ void insertion_sort_list(listint_t **list)
 	{
 		return;
 	}
+	tmp1 = (*list);
+	tmp2 = (*list);
 	if (tmp1->next == NULL)
 	{
 		return;
 	}
-	tmp1 = (*list), tmp2 = (*list);
 	while (tmp1->next != NULL)
 	{
 		if (tmp1->n > tmp1->next->n)
