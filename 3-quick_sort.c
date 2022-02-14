@@ -1,94 +1,78 @@
 #include "sort.h"
 
 /**
- * quick_sort - Sorts an array of integers in ascending
- *              order using the Quick sort algorithm.
+ * swap2 - swap 2 positions on array
  *
- * @array: The array.
- * @size: Array size.
+ * @x: first
+ * @y: second
  *
  */
-
-void quick_sort(int *array, size_t size)
+void swap2(int *x, int *y)
 {
-	execution(array, 0, (int)(size - 1), size);
+	int temp = *x;
+	*x = *y;
+	*y = temp;
 }
 
 /**
- * execution - Sorts an array of integers in ascending
- *             order using the Quick sort algorithm.
+ * partition - make the partition in base of the pivot.
  *
- * @array: The array.
- * @initial: Initial index.
- * @final: Final index.
- * @size: Array size.
+ * @array: the array
+ * @low: low limit
+ * @high: high limit
+ * @size: size of array
  *
+ * Return: int
  */
-
-void execution(int *array, int initial, int final, size_t size)
+int partition(int *array, int low, int high, size_t size)
 {
-	if (initial < final)
+	int pivot_value = array[high];
+	int i = low, j = low;
+
+	for (; j < high; j++)
 	{
-		int pi = lomuto_partition(array, initial, final, size);
-
-		execution(array, initial, pi - 1, size);
-		execution(array, pi + 1, final, size);
-	}
-}
-
-/**
- * lomuto_partition - Iterates over the input array, swapping elements
- *                    that are strictly less than a preselected pivot element.
- *
- * @array: The array.
- * @initial: Initial index.
- * @final: Final index.
- * @size: Array size.
- *
- * Return: Next index.
- */
-
-int lomuto_partition(int *array, int initial, int final, size_t size)
-{
-	int i, j, pivot;
-
-	pivot = array[final];
-	i = (initial - 1);
-
-	for (j = initial; j <= (final - 1); j++)
-	{
-		if (array[j] <= pivot)
+		if (array[j] <= pivot_value)
 		{
-			i++;
-			swap(array, i, j);
-
-			if (i != j)
+			swap2(&array[i], &array[j]);
+			if (array[j] != array[i])
 				print_array(array, size);
+			i++;
+			
 		}
 	}
-
-	swap(array, (i + 1), final);
-
-	if ((i + 1) < j)
+	swap2(&array[i], &array[high]);
+	if (array[j] != array[i])
 		print_array(array, size);
-
-	return (i + 1);
+	return (i);
 }
 
 /**
- * swap - Swap two values in an array.
+ * qs - recursive function
  *
- * @array: The array.
- * @i: First index.
- * @j: Second index.
+ * @array: the array
+ * @low: low limit
+ * @high: high limit
+ * @size: size of array
  *
  */
-
-void swap(int *array, int i, int j)
+void qs(int *array, int low, int high, size_t size)
 {
-	int x = 0;
+	if (low < high)
+	{
+		int pivot_index = partition(array, low, high, size);
+		qs(array, low, pivot_index - 1, size);
+		qs(array, pivot_index + 1, high, size);
+	}
+}
 
-	x = array[i];
-	array[i] = array[j];
-	array[j] = x;
+/**
+ * quick_sort - quicksort function
+ *
+ * @array: the array
+ * @size: the size of array
+ *
+ */
+void quick_sort(int *array, size_t size)
+{
+	qs(array, 0, size - 1, size);
 }
