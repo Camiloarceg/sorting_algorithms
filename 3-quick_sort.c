@@ -1,10 +1,19 @@
 #include "sort.h"
 
-
+/**
+ * partition - make the partition in base of the pivot.
+ *
+ * @array: the array
+ * @low: low limit
+ * @high: high limit
+ * @size: size of array
+ *
+ * Return: int
+ */
 int partition(int *array, int low, int high, size_t size)
 {
 	int pivot_value = array[high];
-	int i = low, j = low; 
+	int i = low, j = low;
 
 	for (; j < high; j++)
 	{
@@ -16,9 +25,18 @@ int partition(int *array, int low, int high, size_t size)
 	}
 	swap(&array[i], &array[high]);
 	print_array(array, size);
-	return i;
+	return (i);
 }
 
+/**
+ * qs - recursive function
+ *
+ * @array: the array
+ * @low: low limit
+ * @high: high limit
+ * @size: size of array
+ *
+ */
 void qs(int *array, int low, int high, size_t size)
 {
 
@@ -33,6 +51,13 @@ void qs(int *array, int low, int high, size_t size)
 	}
 }
 
+/**
+ * quick_sort - quicksort function
+ *
+ * @array: the array
+ * @size: the size of array
+ *
+ */
 void quick_sort(int *array, size_t size)
 {
 	qs(array, 0, size - 1, size);
