@@ -1,6 +1,20 @@
 #include "sort.h"
 
 /**
+ * swap - swap 2 positions on array
+ *
+ * @x: first
+ * @y: second
+ *
+ */
+void swap2(int *x, int *y)
+{
+  int temp = *x;
+  *x = *y;
+  *y = temp;
+}
+
+/**
  * partition - make the partition in base of the pivot.
  *
  * @array: the array
@@ -19,11 +33,11 @@ int partition(int *array, int low, int high, size_t size)
 	{
 		if (array[j] <= pivot_value)
 		{
-			swap(&array[i], &array[j]);
+			swap2(&array[i], &array[j]);
 			i++;
 		}
 	}
-	swap(&array[i], &array[high]);
+	swap2(&array[i], &array[high]);
 	print_array(array, size);
 	return (i);
 }
