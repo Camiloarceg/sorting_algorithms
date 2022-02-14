@@ -55,12 +55,19 @@ void swap_node(listint_t **head, listint_t *node_1, listint_t *node_2)
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *tmp1 = (*list), *tmp2 = (*list);
+	listint_t *tmp1 = NULL, *tmp2 = NULL;
 
 	if (!list || !*list)
+	{
+		printf("entro en el 1");
 		return;
-	if (tmp1->next == NULL)
+	}
+	if (tmp1->next == NULL || list == NULL)
+	{
+		printf("entro en al 2");
 		return;
+	}
+	tmp1 = (*list), tmp2 = (*list);
 	while (tmp1->next != NULL)
 	{
 		if (tmp1->n > tmp1->next->n)
