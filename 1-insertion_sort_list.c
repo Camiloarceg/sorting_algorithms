@@ -61,7 +61,7 @@ void insertion_sort_list(listint_t **list)
 	{
 		return;
 	}
-	if (tmp1->next == NULL || list == NULL)
+	if (tmp1->next == NULL)
 	{
 		return;
 	}
